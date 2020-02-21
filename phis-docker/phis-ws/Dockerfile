@@ -32,7 +32,7 @@ RUN mkdir documents
 ARG VERSION=continuous_integration
 
 # Build app
-RUN git clone -b $PR_REF $PR_REPO__CLONE_URL
+RUN git clone $PR_REPO__CLONE_URL
 RUN cd /home/phis/phis-ws && git checkout $PR_SHA
 # Add this line for caching dependencies
 #RUN cd /home/phis/phis-ws/phis2-ws && mvn clean install -Pprod
