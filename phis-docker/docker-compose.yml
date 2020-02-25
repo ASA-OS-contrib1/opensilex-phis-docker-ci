@@ -13,9 +13,7 @@ services:
       volumes:
          - mongodb_data:/bitnami
       environment:
-         - MONGODB_REPLICA_SET_MODE=primary
-         - MONGODB_REPLICA_SET_NAME=opensilex
-         - MONGODB_ADVERTISED_HOSTNAME=mongodb
+         - MONGODB_EXTRA_FLAGS=--replSet opensilex
       healthcheck:
          test: ["CMD-SHELL", "mongo --host 127.0.0.1 < /dev/null || exit 1"]
          interval: 10s
