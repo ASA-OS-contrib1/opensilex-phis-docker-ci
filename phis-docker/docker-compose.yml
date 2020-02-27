@@ -3,17 +3,15 @@ version: "3.5"
 services:
    mongodb:
       container_name: mongodb
-      image: 'bitnami/mongodb:4.0'
+      build: ./mongodb
       networks:
          - backend
       labels:
          kompose.service.type: nodeport
       ports:
-         - "27017:27017"
+         - "27017"
       volumes:
-         - mongodb_data:/bitnami
-      environment:
-         - MONGODB_EXTRA_FLAGS=--replSet opensilex
+         - mongodb_config:/bitnami/mongodb/conf
       healthcheck:
          test: ["CMD-SHELL", "mongo --host 127.0.0.1 < /dev/null || exit 1"]
          interval: 10s
